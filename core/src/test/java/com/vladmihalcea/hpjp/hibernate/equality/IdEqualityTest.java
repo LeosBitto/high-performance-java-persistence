@@ -37,10 +37,7 @@ public class IdEqualityTest
 
     @Test
     public void testCollectionSize() {
-        if(!ENABLE_LONG_RUNNING_TESTS) {
-            return;
-        }
-        int collectionSize = 25_000;
+        int collectionSize = 1_000_000;
 
         long createListStartNanos = System.nanoTime();
         List<Post> postList = new ArrayList<>(collectionSize);
@@ -58,7 +55,7 @@ public class IdEqualityTest
         );
 
         long createSetStartNanos = System.nanoTime();
-        Set<Post> postSet = new HashSet<>();
+        Set<Post> postSet = new HashSet<>(collectionSize*2);
 
         for (int i = 0; i < collectionSize; i++) {
             Post post = new Post().setId((long) i);
